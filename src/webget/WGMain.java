@@ -10,12 +10,14 @@ public class WGMain {
 	public static void main(String[] args) {
 		String muUrl = null;
 		String saveFile = null;
-		if (args != null && args.length == 3) {
+		if (args != null && args.length == 2) {
+			saveFile = args[0];
 			muUrl = args[1];
-			saveFile = args[2];
 		} else {
 			throw new RuntimeException("args error");
 		}
+		System.out.println("muUrl:" + muUrl);
+		System.out.println("saveFile:" + saveFile);
 		String httpUrl = GetPath(muUrl);
 		HashMap<String, String> setting = new HashMap<String, String>();
 		ArrayList<String> resultList = new ArrayList<String>();
