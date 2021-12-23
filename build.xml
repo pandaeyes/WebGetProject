@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<project name="WebGet" default="dist">
+   <target name="clean">
+        <echo>==============</echo>
+        <echo> WebGet: clean </echo>
+        <echo>==============</echo>
+        <delete dir="${basedir}/dist" />
+        <delete dir="${basedir}/build" />
+    </target>
+    
+    <target name="init" depends="clean">
+        <echo>=============</echo>
+        <echo> WebGet: init </echo>
+        <echo>=============</echo>
+        <mkdir dir="${basedir}/dist" />
+        <mkdir dir="${basedir}/build" />
+        <mkdir dir="${basedir}/build/classes" />
+    </target>
+    
+    <target name="compile" depends="init">
+        <echo>================</echo>
+        <echo> WebGet: compile </echo>
+        <echo>================</echo>
+        <javac debug="on" destdir="${basedir}/build/classes" includeantruntime="on">
+            <src path="${basedir}/src"/>
+            <compilerarg line="-encoding UTF-8 "/>
+        </javac>
+    </target>
+    
+    <target name="dist" depends="compile">
+        <echo>=============</echo>
+        <echo> WebGet: dist </echo>
+        <echo>=============</echo>
+        <jar destfile="${basedir}/build/webget.jar" manifest="${basedir}/MANIFEST.MF">
+            <fileset dir="${basedir}/build/classes">
+            </fileset>
+        </jar>
+    	<echo file="${basedir}/dist/webget.bat" message="java -jar webget.jar" />
+        <copy todir="${basedir}/dist">
+            <fileset file="${basedir}/build/webget.jar" />
+        </copy>
+    </target>
+</project>

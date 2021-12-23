@@ -6,3 +6,4 @@ bin/**/*.class
 Thumbs.db
 .settings/
 .settings/*
+/bin/
